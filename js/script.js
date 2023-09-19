@@ -59,7 +59,8 @@ function genSquare(index){
 function clickedCheck(){
   if(this.id <= 16 ){
     this.classList.add('bomb')
-    console.log(this.id);
+    console.log('YOU LOSE');
+    return counterPoints
   }else{
     this.classList.add('checked')
     this.removeEventListener('click',clickedCheck)
@@ -108,3 +109,4 @@ function reset(){
   clear();
   choiceLevel.append(genBtnStart());
 }
+
