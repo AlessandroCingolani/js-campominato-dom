@@ -4,7 +4,6 @@ const chooseLevel = document.getElementById('stages');
 const message = document.getElementById('output');
 let counterPoints = 0;
 let numberBlackList = [];
-let stopCondition = false;
 
 reset();
 console.log(numberBlackList);
@@ -60,14 +59,12 @@ function genSquare(index){
 }
 
 // function for clicked square 
-if(!stopCondition){
   function clickedCheck(){
     if(this.id <= 16 ){
       const bombExplosion = document.getElementsByClassName('hideBomb')
       for(let i = 0 ; i <= bombExplosion.length -1;i++){
         bombExplosion[i].classList.add('bomb')
       }
-      stopCondition = true;
       lose();
     }else{
       this.classList.add('checked')
@@ -78,7 +75,7 @@ if(!stopCondition){
     }
     win(numberBlackList.length,16);
   }
-}
+
 
 
 // function for unique random number 
@@ -103,6 +100,9 @@ function getRandomNumber(min,max){
 // lose condition
 function lose(){
   message.innerHTML = `Hai perso! Hai fatto ${counterPoints} punti su ${numberBlackList.length - 16}`
+  for(let i = 0;i <= numberBlackList.length - 1;i++){
+    console.log(numberBlackList[i]);
+  }
 }
 
 //win codnition

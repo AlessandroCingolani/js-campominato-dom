@@ -70,3 +70,7 @@ main {
 .bomb {
   background-color: rgb(222, 8, 8);
 }
+
+.freeze {
+  background-color: rgb(19, 144, 25);
+}
