@@ -1,17 +1,19 @@
 const container = document.querySelector('.container');
 const choiceLevel = document.querySelector('.choice-level');
 const chooseLevel = document.getElementById('stages');
+let numberBlackList = [];
+
 
 reset();
 
 
 function init(stage,n){
   for(let i = 1; i <= n ;i++) {
-      const square = genSquare(i);
+      let square = genSquare(getRandomNumber(1,n));
       square.classList.add(stage) 
       square.addEventListener('click',function(){
       console.log(this.id);
-      this.classList.toggle('checked')
+      this.classList.add('checked')
     });
     
     container.append(square);
@@ -50,6 +52,24 @@ function genSquare(index){
   return newSquare;
 }
 
+// function for unique random number 
+function uniqueRandomNumber(min,max){
+  let randomNumber
+  let controlInList = false;
+  while(!controlInList){
+    randomNumber = getRandomNumber(min,max);
+    if (!numberBlackList.includes(randomNumber)) {
+      numberBlackList.push(randomNumber)
+      controlInList = true;
+    }
+  }
+  return randomNumber;
+}
+
+// random number
+function getRandomNumber(min,max){
+  return Math.floor(Math.random() * (max - min + 1)+ min)
+}
 
 // reset function
 function reset(){
