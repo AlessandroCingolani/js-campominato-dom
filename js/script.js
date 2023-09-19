@@ -4,7 +4,7 @@ const chooseLevel = document.getElementById('stages');
 const message = document.getElementById('output');
 let counterPoints = 0;
 let numberBlackList = [];
-
+let stopCondition = false;
 
 reset();
 console.log(numberBlackList);
@@ -60,23 +60,26 @@ function genSquare(index){
 }
 
 // function for clicked square 
-function clickedCheck(){
-  if(this.id <= 16 ){
-    const bombExplosion = document.getElementsByClassName('hideBomb')
-    for(let i = 0 ; i <= bombExplosion.length -1;i++){
-      bombExplosion[i].classList.add('bomb')
+if(!stopCondition){
+  function clickedCheck(){
+    if(this.id <= 16 ){
+      const bombExplosion = document.getElementsByClassName('hideBomb')
+      for(let i = 0 ; i <= bombExplosion.length -1;i++){
+        bombExplosion[i].classList.add('bomb')
+      }
+      stopCondition = true;
+      lose();
+    }else{
+      this.classList.add('checked')
+      this.removeEventListener('click',clickedCheck)
+      counterPoints++;
+      console.log(counterPoints);
+      console.log(this.id);
     }
-    lose();
-    return counterPoints
-  }else{
-    this.classList.add('checked')
-    this.removeEventListener('click',clickedCheck)
-    counterPoints++;
-    console.log(counterPoints);
-    console.log(this.id);
+    win(numberBlackList.length,16);
   }
-  win(numberBlackList.length,16);
 }
+
 
 // function for unique random number 
 function uniqueRandomNumber(min,max){
@@ -100,13 +103,12 @@ function getRandomNumber(min,max){
 // lose condition
 function lose(){
   message.innerHTML = `Hai perso! Hai fatto ${counterPoints} punti su ${numberBlackList.length - 16}`
-  
 }
 
 //win codnition
-function win(n,bomb) {
+function win(n,bomb) { 
   if (counterPoints === (n - bomb)) {
-    console.log('YOU WIN');
+    message.innerHTML = `CONGRATULAZIONI!! HAI  VINTO! HAI  TOTALIZZATO  ${counterPoints} PUNTI SU ${numberBlackList.length - 16}`
   }
 }
 
