@@ -1,6 +1,7 @@
 const container = document.querySelector('.container');
 const choiceLevel = document.querySelector('.choice-level');
 const chooseLevel = document.getElementById('stages');
+const message = document.getElementById('output');
 let counterPoints = 0;
 let numberBlackList = [];
 
@@ -12,7 +13,10 @@ console.log(numberBlackList);
 function init(stage,n){
   for(let i = 1; i <= n ;i++) {
       let square = genSquare(uniqueRandomNumber(1,n));
-      square.classList.add(stage)  
+      square.classList.add(stage)
+      if (square.id <= 16) {
+        square.classList.add('hideBomb')
+      }  
       container.append(square);
       }  
       console.log(numberBlackList);
@@ -58,9 +62,11 @@ function genSquare(index){
 // function for clicked square 
 function clickedCheck(){
   if(this.id <= 16 ){
-  
-    this.classList.add('bomb')
-    console.log('YOU LOSE');
+    const bombExplosion = document.getElementsByClassName('hideBomb')
+    for(let i = 0 ; i <= bombExplosion.length -1;i++){
+      bombExplosion[i].classList.add('bomb')
+    }
+    lose();
     return counterPoints
   }else{
     this.classList.add('checked')
@@ -91,6 +97,12 @@ function getRandomNumber(min,max){
   return Math.floor(Math.random() * (max - min + 1)+ min)
 }
 
+// lose condition
+function lose(){
+  message.innerHTML = `Hai perso! Hai fatto ${counterPoints} punti su ${numberBlackList.length - 16}`
+  
+}
+
 //win codnition
 function win(n,bomb) {
   if (counterPoints === (n - bomb)) {
@@ -103,6 +115,7 @@ function clear() {
   container.innerHTML ='';
   numberBlackList = [];
   counterPoints = 0;
+  message.innerHTML = ''
 }
 
 // reset function
