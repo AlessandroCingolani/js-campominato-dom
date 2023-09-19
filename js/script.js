@@ -6,6 +6,7 @@ let numberBlackList = [];
 
 
 reset();
+console.log(numberBlackList);
 
 
 function init(stage,n){
@@ -14,10 +15,11 @@ function init(stage,n){
       square.classList.add(stage)  
       container.append(square);
       }  
+      console.log(numberBlackList);
   }
 
 
-
+  
 
 // generator start btn
 function genBtnStart (){
@@ -27,6 +29,7 @@ function genBtnStart (){
 
   btn.addEventListener('click',function(){
     container.innerHTML = '';
+    numberBlackList = [];
     if(chooseLevel.value === 'easy'){
       init('easy',100)
     }
@@ -84,7 +87,8 @@ function getRandomNumber(min,max){
 
 // reset function
 function reset(){
-  numberBlackList = [];
   container.innerHTML ='';
+  numberBlackList = [];
+  counterPoints = 0;
   choiceLevel.append(genBtnStart());
 }
