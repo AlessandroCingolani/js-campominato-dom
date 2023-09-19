@@ -105,6 +105,13 @@ function getRandomNumber(min,max){
 function lose(){
   message.innerHTML = `Hai perso! Hai fatto ${counterPoints} punti su ${numberBlackList.length - 16}`
   stopCondition = true;
+  const freeze = document.getElementsByClassName('square')
+  for(let i = 0 ; i <= freeze.length -1;i++){
+    if(freeze[i].includes('checked')){
+
+      freeze[i].classList.add('freeze')
+    }
+  }
 }
 
 //win codnition
