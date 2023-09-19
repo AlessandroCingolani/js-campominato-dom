@@ -58,11 +58,7 @@ function genSquare(index){
 // function for clicked square 
 function clickedCheck(){
   if(this.id <= 16 ){
-    for(let i = 0; i < numberBlackList.length; i++) {
-      if(numberBlackList[i] <= 16) {
-        this.classList.add('bomb')
-      }
-    }
+  
     this.classList.add('bomb')
     console.log('YOU LOSE');
     return counterPoints
