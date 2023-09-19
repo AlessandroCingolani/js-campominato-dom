@@ -60,15 +60,15 @@ function genSquare(index){
 }
 
 // function for clicked square 
-if(!stopCondition){
-  function clickedCheck(){
+function clickedCheck(){
+  if(!stopCondition){
     if(this.id <= 16 ){
       const bombExplosion = document.getElementsByClassName('hideBomb')
       for(let i = 0 ; i <= bombExplosion.length -1;i++){
         bombExplosion[i].classList.add('bomb')
       }
       lose();
-      console.log(stopCondition);
+
     }else{
       this.classList.add('checked')
       this.removeEventListener('click',clickedCheck)
@@ -120,11 +120,13 @@ function clear() {
   numberBlackList = [];
   counterPoints = 0;
   message.innerHTML = ''
+  stopCondition = false;
 }
 
 // reset function
 function reset(){
   clear();
+  
   choiceLevel.append(genBtnStart());
 }
 
