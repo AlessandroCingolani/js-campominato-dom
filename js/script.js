@@ -1,16 +1,16 @@
 const container = document.querySelector('.container');
 const choiceLevel = document.querySelector('.choice-level');
 const chooseLevel = document.getElementById('stages');
-let numberBlackList = [];
 let counterPoints = 0;
-let endCondition = false;
+let numberBlackList = [];
+
 
 reset();
 
 
 function init(stage,n){
   for(let i = 1; i <= n ;i++) {
-      let square = genSquare(getRandomNumber(1,n));
+      let square = genSquare(uniqueRandomNumber(1,n));
       square.classList.add(stage)  
       container.append(square);
       }  
@@ -51,10 +51,9 @@ function genSquare(index){
 
 // funciot for clicked square 
 function clickedCheck(){
-  if(this.id <= 15 ){
+  if(this.id <= 16 ){
     this.classList.add('bomb')
     console.log(this.id);
-    return lose;
   }else{
     this.classList.add('checked')
     this.removeEventListener('click',clickedCheck)
@@ -85,6 +84,7 @@ function getRandomNumber(min,max){
 
 // reset function
 function reset(){
+  numberBlackList = [];
   container.innerHTML ='';
   choiceLevel.append(genBtnStart());
 }
