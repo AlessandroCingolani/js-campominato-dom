@@ -100,9 +100,7 @@ function getRandomNumber(min,max){
 // lose condition
 function lose(){
   message.innerHTML = `Hai perso! Hai fatto ${counterPoints} punti su ${numberBlackList.length - 16}`
-  for(let i = 0;i <= numberBlackList.length - 1;i++){
-    console.log(numberBlackList[i]);
-  }
+  
 }
 
 //win codnition
