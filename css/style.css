@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header,footer {
+  height: 70px;
+}
+
+.container-header {
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 140px);
+  background-color: aqua;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+
+}
+
+.square {
+  aspect-ratio: 1 / 1;
+  border: 2px solid white;
+  background-color: rgb(229, 255, 0);
+  cursor: pointer;
+}
+
+.square.easy {
+  width: calc(100% / 10);
+}
+
+.square.normal {
+  width: calc(100% / 9);
+}
+
+.square.hard {
+  width: calc(100% / 7);
+}
+
+.square.checked {
+  background-color: rgba(0, 255, 255, 0.599);
+}
+
+.btn-play {
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 10px;
+  color: aquamarine;
+  background-color: rgba(0, 0, 255, 0.704);
+}
