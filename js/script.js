@@ -28,16 +28,19 @@ function genBtnStart (){
   btn.innerHTML = 'Start';
 
   btn.addEventListener('click',function(){
-    container.innerHTML = '';
-    numberBlackList = [];
+
+    clear();
+
     if(chooseLevel.value === 'easy'){
       init('easy',100)
+      win(100,16);
     }
     else if(chooseLevel.value === 'normal'){
       init('normal',81)
     }
     else if(chooseLevel.value === 'hard'){
       init('hard',49)
+     
     }
   })
   return btn;
@@ -64,6 +67,7 @@ function clickedCheck(){
     console.log(counterPoints);
     console.log(this.id);
   }
+  win(numberBlackList.length,16);
 }
 
 // function for unique random number 
@@ -85,10 +89,22 @@ function getRandomNumber(min,max){
   return Math.floor(Math.random() * (max - min + 1)+ min)
 }
 
-// reset function
-function reset(){
+//win codnition
+function win(n,bomb) {
+  if (counterPoints === (n - bomb)) {
+    console.log('YOU WIN');
+  }
+}
+
+// all clear param
+function clear() {
   container.innerHTML ='';
   numberBlackList = [];
   counterPoints = 0;
+}
+
+// reset function
+function reset(){
+  clear();
   choiceLevel.append(genBtnStart());
 }
