@@ -2,7 +2,8 @@ const container = document.querySelector('.container');
 const choiceLevel = document.querySelector('.choice-level');
 const chooseLevel = document.getElementById('stages');
 let numberBlackList = [];
- 
+let counterPoints = 0;
+let endCondition = false;
 
 reset();
 
@@ -10,20 +11,10 @@ reset();
 function init(stage,n){
   for(let i = 1; i <= n ;i++) {
       let square = genSquare(getRandomNumber(1,n));
-      square.classList.add(stage) 
-      square.addEventListener('click',function(){
-        if(this.id <= 15 ){
-          this.classList.add('bomb')
-        }else{
-          this.classList.add('checked')
-        }
-        console.log(this.id);
-       
-    });
-    
-    container.append(square);
+      square.classList.add(stage)  
+      container.append(square);
+      }  
   }
-}
 
 
 
@@ -54,7 +45,23 @@ function genSquare(index){
   const newSquare = document.createElement('div');
   newSquare.className = 'square';
   newSquare.id = index;
+  newSquare.addEventListener('click',clickedCheck)
   return newSquare;
+}
+
+// funciot for clicked square 
+function clickedCheck(){
+  if(this.id <= 15 ){
+    this.classList.add('bomb')
+    console.log(this.id);
+    return lose;
+  }else{
+    this.classList.add('checked')
+    this.removeEventListener('click',clickedCheck)
+    counterPoints++;
+    console.log(counterPoints);
+    console.log(this.id);
+  }
 }
 
 // function for unique random number 
