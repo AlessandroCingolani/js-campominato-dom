@@ -2,7 +2,7 @@ const container = document.querySelector('.container');
 const choiceLevel = document.querySelector('.choice-level');
 const chooseLevel = document.getElementById('stages');
 let numberBlackList = [];
-
+ 
 
 reset();
 
@@ -12,8 +12,13 @@ function init(stage,n){
       let square = genSquare(getRandomNumber(1,n));
       square.classList.add(stage) 
       square.addEventListener('click',function(){
-      console.log(this.id);
-      this.classList.add('checked')
+        if(this.id <= 15 ){
+          this.classList.add('bomb')
+        }else{
+          this.classList.add('checked')
+        }
+        console.log(this.id);
+       
     });
     
     container.append(square);
