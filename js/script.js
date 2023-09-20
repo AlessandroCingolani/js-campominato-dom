@@ -109,9 +109,7 @@ function lose(){
   for (let i = 0; i < freeze.length; i++) {
     if (!freeze[i].classList.contains('checked') && !freeze[i].classList.contains('bomb')) {
      freeze[i].classList.add('freeze')
-    } else {
-    
-    }
+    }  
   }
 }
 
